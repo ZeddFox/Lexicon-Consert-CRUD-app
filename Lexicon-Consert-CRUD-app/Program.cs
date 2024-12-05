@@ -1,20 +1,22 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
+using System.Xml.Linq;
 
-namespace Lexicon_Consert_CRUD_app
+namespace Lexicon_Concert_CRUD_app
 {
     class Program()
     {
         static string programPath = "nullPath";
+        static string fileName = "Concerts.xml";
 
-        static ConsertBuilder consertBuilder;
+        static ConcertBuilder concertBuilder;
         static Menu menu;
 
          static void Main()
         {
-            #region Load XML and start ConsertBuilder Class
-            try
-            {
+            #region Load XML and start ConcertBuilder Class
                 programPath = Environment.ProcessPath;
+
                 if (programPath == null)
                 {
                     Console.WriteLine("Path is invalid.");
@@ -40,27 +42,70 @@ namespace Lexicon_Consert_CRUD_app
                             isCleanPath = true;
                         }
                     }
-                    programPath += "XML\\";
                     #endregion
 
                     //Debug cheat:
                     programPath = "C:\\Users\\zeddf\\source\\repos\\Lexicon-Consert-CRUD-app\\Lexicon-Consert-CRUD-app\\";
 
-                    XmlDocument consertsXML = new XmlDocument();
+                    XmlDocument concertsXML = new XmlDocument();
 
-                    consertsXML.Load(programPath + "Conserts.xml");
+                    try
+                    {
+                        concertsXML.Load(programPath + fileName);
+                    }
+                    catch
+                    {
+                        if (File.Exists(programPath + fileName))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("File exists but cannot be read due to an unknown error.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            XmlElement concertsElement = concertsXML.DocumentElement;
 
-                    consertBuilder = new ConsertBuilder(consertsXML);
+                            concertsElement = concertsXML.CreateElement("Concerts");
+
+                            XmlElement concertElement = concertsXML.CreateElement("Concert");
+
+                            XmlElement idElement = concertsXML.CreateElement("Id");
+                            idElement.InnerText = "00";
+                            concertElement.AppendChild(idElement);
+
+                            XmlElement locationElement = concertsXML.CreateElement("Location");
+                            locationElement.InnerText = "none";
+                            concertElement.AppendChild(locationElement);
+
+                            XmlElement capacityElement = concertsXML.CreateElement("Capacity");
+                            capacityElement.InnerText = "00";
+                            concertElement.AppendChild(capacityElement);
+
+                            XmlElement performerElement = concertsXML.CreateElement("Performer");
+                            performerElement.InnerText = "none";
+                            concertElement.AppendChild(performerElement);
+
+                            XmlElement dateElement = concertsXML.CreateElement("Date");
+                            dateElement.InnerText = "none";
+                            concertElement.AppendChild(dateElement);
+
+                            concertsElement.AppendChild(concertElement);
+
+                            concertsXML.AppendChild(concertsElement);
+
+                            concertsXML.Save(programPath + fileName);
+
+                            concertsXML.Load(programPath + fileName);
+                        }
+                    }
+
+                    concertBuilder = new ConcertBuilder(concertsXML);
+
+                    menu = new Menu(concertBuilder, programPath + fileName);
+                    menu.Run();
                 }
-            }
-            catch
-            {
-                Console.WriteLine("Console application needs to be in the same folder as xml files.");
-            }
             #endregion
-
-            menu = new Menu(consertBuilder);
-            menu.Run();
         }
     }
 }

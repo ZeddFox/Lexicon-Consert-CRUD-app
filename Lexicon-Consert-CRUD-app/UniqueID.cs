@@ -4,22 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lexicon_Consert_CRUD_app
+namespace Lexicon_Concert_CRUD_app
 {
     internal static class UniqueID
     {
         static int currentID = 0;
         public static int GetNewID()
         {
-            int newID = currentID++;
-            currentID = newID;
-
-            return newID;
+            currentID++;
+            return currentID;
         }
 
         public static void SetLowestID(int value)
         {
-            currentID = value;
+            currentID = value++;
         }
     }
 }

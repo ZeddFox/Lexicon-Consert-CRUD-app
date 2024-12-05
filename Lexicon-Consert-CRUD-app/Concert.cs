@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lexicon_Consert_CRUD_app
+namespace Lexicon_Concert_CRUD_app
 {
-    internal class Consert
+    internal class Concert
     {
         public int ID { get; set; }
         public string Location { get; set; }
@@ -14,7 +14,7 @@ namespace Lexicon_Consert_CRUD_app
         public string Performer { get; set; }
         public string Date { get; set; }
 
-        public Consert(int iD, string location, int capacity, string performer, string date)
+        public Concert(int iD, string location, int capacity, string performer, string date)
         {
             ID = iD;
             Location = location;

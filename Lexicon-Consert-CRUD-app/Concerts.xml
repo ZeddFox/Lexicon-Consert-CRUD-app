@@ -1,0 +1,9 @@
+<Concerts>
+  <Concert>
+    <Id>1</Id>
+    <Location>nowhere</Location>
+    <Capacity>0</Capacity>
+    <Performer>noone</Performer>
+    <Date>never</Date>
+  </Concert>
+</Concerts>
