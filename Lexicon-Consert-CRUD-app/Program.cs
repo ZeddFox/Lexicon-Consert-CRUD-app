@@ -24,7 +24,7 @@ namespace Lexicon_Concert_CRUD_app
                 else
                 {
                     #region Path Trim
-                    //Trim away exefile from path and add XML folder
+                    //Trim away exefile from path
                     char[] pathChars = programPath.ToCharArray();
                     bool isCleanPath = false;
                     int trimPos = 0;
@@ -43,9 +43,6 @@ namespace Lexicon_Concert_CRUD_app
                         }
                     }
                     #endregion
-
-                    //Debug cheat:
-                    programPath = "C:\\Users\\zeddf\\source\\repos\\Lexicon-Consert-CRUD-app\\Lexicon-Consert-CRUD-app\\";
 
                     XmlDocument concertsXML = new XmlDocument();
 
