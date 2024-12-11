@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Security;
 using System.Xml;
 using System.Xml.Linq;
 
 namespace Lexicon_Concert_CRUD_app
 {
-    class Program()
+    public class Program()
     {
         static string programPath = "nullPath";
         static string fileName = "Concerts.xml";
@@ -12,7 +13,7 @@ namespace Lexicon_Concert_CRUD_app
         static ConcertBuilder concertBuilder;
         static Menu menu;
 
-         static void Main()
+        static void Main()
         {
             #region Load XML and start ConcertBuilder Class
                 programPath = Environment.ProcessPath;
@@ -42,62 +43,62 @@ namespace Lexicon_Concert_CRUD_app
                             isCleanPath = true;
                         }
                     }
-                    #endregion
+                #endregion
 
-                    XmlDocument concertsXML = new XmlDocument();
+                XmlDocument concertsXML = new XmlDocument();
 
-                    try
+                try
+                {
+                    concertsXML.Load(programPath + fileName);
+                }
+                catch
+                {
+                    if (File.Exists(programPath + fileName))
                     {
+                        Console.Clear();
+                        Console.WriteLine("File exists but cannot be read due to an unknown error.");
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        XmlElement concertsElement = concertsXML.DocumentElement;
+
+                        concertsElement = concertsXML.CreateElement("Concerts");
+
+                        XmlElement concertElement = concertsXML.CreateElement("Concert");
+
+                        XmlElement idElement = concertsXML.CreateElement("Id");
+                        idElement.InnerText = "00";
+                        concertElement.AppendChild(idElement);
+
+                        XmlElement locationElement = concertsXML.CreateElement("Location");
+                        locationElement.InnerText = "none";
+                        concertElement.AppendChild(locationElement);
+
+                        XmlElement capacityElement = concertsXML.CreateElement("Capacity");
+                        capacityElement.InnerText = "00";
+                        concertElement.AppendChild(capacityElement);
+
+                        XmlElement performerElement = concertsXML.CreateElement("Performer");
+                        performerElement.InnerText = "none";
+                        concertElement.AppendChild(performerElement);
+
+                        XmlElement dateElement = concertsXML.CreateElement("Date");
+                        dateElement.InnerText = "none";
+                        concertElement.AppendChild(dateElement);
+
+                        concertsElement.AppendChild(concertElement);
+
+                        concertsXML.AppendChild(concertsElement);
+
+                        concertsXML.Save(programPath + fileName);
+
                         concertsXML.Load(programPath + fileName);
                     }
-                    catch
-                    {
-                        if (File.Exists(programPath + fileName))
-                        {
-                            Console.Clear();
-                            Console.WriteLine("File exists but cannot be read due to an unknown error.");
-                            Console.WriteLine("Press any key to continue...");
-                            Console.ReadKey();
-                        }
-                        else
-                        {
-                            XmlElement concertsElement = concertsXML.DocumentElement;
+                }
 
-                            concertsElement = concertsXML.CreateElement("Concerts");
-
-                            XmlElement concertElement = concertsXML.CreateElement("Concert");
-
-                            XmlElement idElement = concertsXML.CreateElement("Id");
-                            idElement.InnerText = "00";
-                            concertElement.AppendChild(idElement);
-
-                            XmlElement locationElement = concertsXML.CreateElement("Location");
-                            locationElement.InnerText = "none";
-                            concertElement.AppendChild(locationElement);
-
-                            XmlElement capacityElement = concertsXML.CreateElement("Capacity");
-                            capacityElement.InnerText = "00";
-                            concertElement.AppendChild(capacityElement);
-
-                            XmlElement performerElement = concertsXML.CreateElement("Performer");
-                            performerElement.InnerText = "none";
-                            concertElement.AppendChild(performerElement);
-
-                            XmlElement dateElement = concertsXML.CreateElement("Date");
-                            dateElement.InnerText = "none";
-                            concertElement.AppendChild(dateElement);
-
-                            concertsElement.AppendChild(concertElement);
-
-                            concertsXML.AppendChild(concertsElement);
-
-                            concertsXML.Save(programPath + fileName);
-
-                            concertsXML.Load(programPath + fileName);
-                        }
-                    }
-
-                    concertBuilder = new ConcertBuilder(concertsXML);
+                concertBuilder = new ConcertBuilder(concertsXML);
 
                     menu = new Menu(concertBuilder, programPath + fileName);
                     menu.Run();

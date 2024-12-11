@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lexicon_Concert_CRUD_app
 {
-    internal class Concert
+    public class Concert
     {
         public int ID { get; set; }
         public string Location { get; set; }

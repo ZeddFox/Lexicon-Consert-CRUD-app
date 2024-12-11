@@ -5,6 +5,13 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicon-Consert-CRUD-app", "Lexicon-Consert-CRUD-app\Lexicon-Consert-CRUD-app.csproj", "{C42EA55A-6DE2-4887-8A7C-109891C7F690}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicon-Webproject-Exercise", "Lexicon-Webproject-Exercise\Lexicon-Webproject-Exercise.csproj", "{C831CBCB-0AA0-446F-AF9B-96A4034A456B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C42EA55A-6DE2-4887-8A7C-109891C7F690} = {C42EA55A-6DE2-4887-8A7C-109891C7F690}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicon-Posting-data", "Lexicon-Posting-data\Lexicon-Posting-data.csproj", "{EC44BA96-459E-4312-9D47-A61248D97A5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,14 @@ Global
 		{C42EA55A-6DE2-4887-8A7C-109891C7F690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C42EA55A-6DE2-4887-8A7C-109891C7F690}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C42EA55A-6DE2-4887-8A7C-109891C7F690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C831CBCB-0AA0-446F-AF9B-96A4034A456B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C831CBCB-0AA0-446F-AF9B-96A4034A456B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C831CBCB-0AA0-446F-AF9B-96A4034A456B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C831CBCB-0AA0-446F-AF9B-96A4034A456B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC44BA96-459E-4312-9D47-A61248D97A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC44BA96-459E-4312-9D47-A61248D97A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC44BA96-459E-4312-9D47-A61248D97A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC44BA96-459E-4312-9D47-A61248D97A5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
