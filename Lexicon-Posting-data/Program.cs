@@ -8,7 +8,7 @@ var app = builder.Build();
 string filePath = "C:\\Lexicon\\Assignments\\2024-12\\2024-12-11\\Assignment\\Concerts.xml";
 
 app.MapGet("/", () => "Hello World!");
-app.MapGet("/concertform", async (HttpRequest request) => 
+app.MapPost("/concertform", async (HttpRequest request) => 
 { 
     var content = await request.ReadFormAsync();
 
