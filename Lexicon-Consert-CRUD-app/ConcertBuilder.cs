@@ -191,12 +191,12 @@ namespace Lexicon_Concert_CRUD_app
             int lowestID = 0;
             for (int i = 0; i < bruteConcerts.Count; i++)
             {
-                if (bruteConcerts[i].ID > lowestID)
+                if (bruteConcerts[i].ID >= lowestID)
                 {
                     lowestID = bruteConcerts[i].ID;
                 }
             }
-            bruteUniqueID = lowestID++;
+            bruteUniqueID = lowestID += 1;
             #endregion
 
             #region NewConsert()
