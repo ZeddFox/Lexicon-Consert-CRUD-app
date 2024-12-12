@@ -12,10 +12,22 @@ app.MapPost("/concertform", async (HttpRequest request) =>
 { 
     var content = await request.ReadFormAsync();
 
-    string location = content["location"];
-    int capacity = Convert.ToInt32(content["capacity"]);
-    string performer = content["performer"];
-    string date = content["date"];
+    string location;
+    int capacity;
+    string performer;
+    string date;
+
+    try
+    {
+        location = content["location"];
+        capacity = Convert.ToInt32(content["capacity"]);
+        performer = content["performer"];
+        date = content["date"];
+    }
+    catch
+    {
+        return "One or more fields were empty. Please go back and fill out all the fields.";
+    }
 
     try
     {
