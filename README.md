@@ -1,7 +1,9 @@
 1. Purpose
+   
 A console app for create, read, update and delete functionality.
 
 2. Assignment
+   
 This is a mandatory assignment. Finish it by Friday latest. Share your code
 to GitHub and send the URL to me in chat. Do it by Friday lunch the latest.
 When your code is run, the user should be able to manage a collection of
